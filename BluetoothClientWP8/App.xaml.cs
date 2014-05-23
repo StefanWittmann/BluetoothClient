@@ -96,7 +96,8 @@ namespace BluetoothClientWP8
         {
             if (Debugger.IsAttached)
             {
-                // An unhandled exception has occurred; break into the debugger
+                // An unhandled exception has occurred; break into the debugger  		HResult	0x8007274c	int
+
                 Debugger.Break();
             }
         }

@@ -203,12 +203,17 @@ namespace BluetoothClientWP8
 
         private void ConnectAppToDeviceButton_Click_1(object sender, RoutedEventArgs e)
         {
-            connectionManager.Terminate();
-            ConnectAppToDeviceButton.IsEnabled = false;
-            ConnectAppToDeviceButton.Content = "not connected";
-            lstBTPaired.SelectedIndex = -1;
-            connectionManager.Initialize();
-            stateManager.Initialize();
+
+            
+                connectionManager.Terminate();
+                ConnectAppToDeviceButton.IsEnabled = false;
+                ConnectAppToDeviceButton.Content = "not connected";
+                lstBTPaired.SelectedIndex = -1;
+                connectionManager.Initialize();
+                stateManager.Initialize();
+            
+            
+            
             //AppToDevice();
         }
 
@@ -280,19 +285,29 @@ namespace BluetoothClientWP8
                     ba = ba.Replace(")", ""); // Now remove the last ")" in the String to be "00:00:00:00:00"
                     // Test our Hack by Uncommenting Below...
                     //MessageBox.Show(ba); - This is just to make sure we did it right */
+                    try
+                    {
 
-                    PeerFinder.AlternateIdentities["Bluetooth:Paired"] = ""; // Grab Paired Devices
-                    var PF = await PeerFinder.FindAllPeersAsync(); // Store Paired Devices
+                        PeerFinder.AlternateIdentities["Bluetooth:Paired"] = ""; // Grab Paired Devices
+                        var PF = await PeerFinder.FindAllPeersAsync(); // Store Paired Devices
+                        connectionManager.Connect(PF[lstBTPaired.SelectedIndex].HostName);
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        //if ((uint)ex.HResult == 0x8007274c)
+                        //{
+                        MessageBox.Show(ex.Message);    
+                        MessageBox.Show("Not in Range");
+                        //}
+                    }
 
-
-                    connectionManager.Connect(PF[lstBTPaired.SelectedIndex].HostName);
                     ConnectAppToDeviceButton.Content = "disconnect";
                     //DeviceName.IsReadOnly = true;
                     ConnectAppToDeviceButton.IsEnabled = true;
                     //continue;
 
-
-                    //BTSock = new StreamSocket(); // Create a new Socket Connection
+                        //BTSock = new StreamSocket(); // Create a new Socket Connection
                     //await BTSock.ConnectAsync(PF[lstBTPaired.SelectedIndex].HostName, "1"); // Connect using Socket to Selected Item
 
                     // Once Connected, let's give Arduino a HELLO

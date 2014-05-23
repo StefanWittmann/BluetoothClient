@@ -84,20 +84,21 @@ namespace BluetoothConnectionManager
         {
             if (socket != null)
             {
-                try
-                {
+                //try
+                //{
                     await socket.ConnectAsync(deviceHostName, "1");
                     dataReader = new DataReader(socket.InputStream);
                     dataReadWorker.RunWorkerAsync();
                     dataWriter = new DataWriter(socket.OutputStream);
-                }
-                catch
-                {
+                //}
+                //catch
+                //{
                     //this.ConnectAppToDeviceButton = new System.Windows.Controls.Button();
-                    ConnectAppToDeviceButton = new System.Windows.Controls.Button();                   // hier ist was falsch!!!
-                    this.ConnectAppToDeviceButton.IsEnabled = false;
-                    System.Windows.MessageBox.Show("Not in Range");
-                    System.Windows.MessageBox.Show("unn nu?");
+                    //ConnectAppToDeviceButton = new System.Windows.Controls.Button();                   // hier ist was falsch!!!
+                    
+                    //this.ConnectAppToDeviceButton.IsEnabled = false;
+                    //System.Windows.MessageBox.Show("Not in Range");
+                    //System.Windows.MessageBox.Show("unn nu?");
 
                     //dies hier möchte ich ausführen wenn der Verbindungsaufbau gescheitert ist um das Programm in den Anfangzustand zu versetzen:
                     
@@ -106,7 +107,7 @@ namespace BluetoothConnectionManager
                     //stateManager.Initialize();
                     //lstBTPaired.Items.Clear();
                     //RefreshPairedDevicesList();
-                }
+                //}
             }
         }
 
