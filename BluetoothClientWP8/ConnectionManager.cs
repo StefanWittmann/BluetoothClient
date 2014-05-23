@@ -99,7 +99,7 @@ namespace BluetoothConnectionManager
                     System.Windows.MessageBox.Show("Not in Range");
                     System.Windows.MessageBox.Show("unn nu?");
 
-                    //Terminate();
+                    //dies hier möchte ich ausführen wenn der Verbindungsaufbau gescheitert ist um das Programm in den Anfangzustand zu versetzen:
                     
                     //ConnectAppToDeviceButton.Content = "not connected";
                     //connectionManager.Initialize();
