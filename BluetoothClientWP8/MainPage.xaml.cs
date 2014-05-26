@@ -30,11 +30,16 @@ using Windows.Phone.Speech.Synthesis;
 
 namespace BluetoothClientWP8
 {
+
+    
     public partial class MainPage : PhoneApplicationPage
     {
         private ConnectionManager connectionManager;
 
         private StateManager stateManager;
+
+       
+
 
         
 
@@ -47,6 +52,11 @@ namespace BluetoothClientWP8
             stateManager = new StateManager();
             Loaded += MainPage_Loaded;
         }
+
+
+
+        
+
 
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -243,6 +253,13 @@ namespace BluetoothClientWP8
             }
         }*/
 
+        
+
+
+
+
+
+
         private async void RedButton_Click_1(object sender, RoutedEventArgs e)
         {
             string command = stateManager.RedLightOn ? "TURN_OFF_RED" : "TURN_ON_RED";
@@ -262,6 +279,7 @@ namespace BluetoothClientWP8
         }
 
         private async void lstBTPaired_Tap_1(object sender, GestureEventArgs e)
+            
         {
             if (lstBTPaired.SelectedItem == null) // To prevent errors, make sure something is Selected
             {
@@ -285,26 +303,47 @@ namespace BluetoothClientWP8
                     ba = ba.Replace(")", ""); // Now remove the last ")" in the String to be "00:00:00:00:00"
                     // Test our Hack by Uncommenting Below...
                     //MessageBox.Show(ba); - This is just to make sure we did it right */
-                    try
-                    {
 
-                        PeerFinder.AlternateIdentities["Bluetooth:Paired"] = ""; // Grab Paired Devices
-                        var PF = await PeerFinder.FindAllPeersAsync(); // Store Paired Devices
+                    PeerFinder.AlternateIdentities["Bluetooth:Paired"] = ""; // Grab Paired Devices
+                    var PF = await PeerFinder.FindAllPeersAsync(); // Store Paired Devices
+                    //try
+                    //{
+
+                        //StreamSocket socket = new StreamSocket();
+
+
+
+                        //await socket.ConnectAsync(PF[lstBTPaired.SelectedIndex].HostName, "1");
+
+
                         connectionManager.Connect(PF[lstBTPaired.SelectedIndex].HostName);
                         
-                    }
-                    catch (Exception ex)
-                    {
+
+                    //}
+                    //catch (Exception exp)
+                    //{
                         //if ((uint)ex.HResult == 0x8007274c)
                         //{
-                        MessageBox.Show(ex.Message);    
-                        MessageBox.Show("Not in Range");
+                        //MessageBox.Show(ex.Message);    
+                      //  MessageBox.Show("Not in Range2");
+                        //ConnectAppToDeviceButton.IsEnabled = false;
+                        //ConnectAppToDeviceButton.Content = "not connected";
+                        //stateManager.Initialize();
+                        //lstBTPaired.Items.Clear();
+                        //RefreshPairedDevicesList();
+                        //connectionManager.Terminate();
                         //}
-                    }
+                    //}
 
-                    ConnectAppToDeviceButton.Content = "disconnect";
-                    //DeviceName.IsReadOnly = true;
-                    ConnectAppToDeviceButton.IsEnabled = true;
+                    //finally
+                    //{
+                        ConnectAppToDeviceButton.Content = "disconnect";
+                        //DeviceName.IsReadOnly = true;
+                        ConnectAppToDeviceButton.IsEnabled = true;
+                    //}
+
+
+                    
                     //continue;
 
                         //BTSock = new StreamSocket(); // Create a new Socket Connection

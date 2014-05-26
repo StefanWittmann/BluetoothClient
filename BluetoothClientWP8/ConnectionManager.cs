@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
@@ -22,7 +23,7 @@ namespace BluetoothConnectionManager
         /// <summary>
         /// Socket used to communicate with Arduino.
         /// </summary>
-        private StreamSocket socket;
+        public StreamSocket socket;
 
         /// <summary>
         /// DataWriter used to send commands easily.
@@ -53,6 +54,10 @@ namespace BluetoothConnectionManager
         /// <summary>
         /// Initialize the manager, should be called in OnNavigatedTo of main page.
         /// </summary>
+        /// 
+        
+
+
         public void Initialize()
         {
             socket = new StreamSocket();
@@ -75,7 +80,7 @@ namespace BluetoothConnectionManager
                 dataReadWorker.CancelAsync();
             }
         }
-        public System.Windows.Controls.Button ConnectAppToDeviceButton { get; set; }
+        public Button ConnectAppToDeviceButton { get; set; }
         /// <summary>
         /// Connect to the given host device.
         /// </summary>
@@ -84,12 +89,22 @@ namespace BluetoothConnectionManager
         {
             if (socket != null)
             {
-                //try
-                //{
+                try
+                {
                     await socket.ConnectAsync(deviceHostName, "1");
                     dataReader = new DataReader(socket.InputStream);
                     dataReadWorker.RunWorkerAsync();
                     dataWriter = new DataWriter(socket.OutputStream);
+                }
+                catch 
+                {
+                  //System.Windows.MessageBox.Show("Not in Range1");
+                    ConnectAppToDeviceButton.Content = "TEST";
+                  
+                    //throw exp;
+                }
+                    
+                
                 //}
                 //catch
                 //{
@@ -102,7 +117,7 @@ namespace BluetoothConnectionManager
 
                     //dies hier möchte ich ausführen wenn der Verbindungsaufbau gescheitert ist um das Programm in den Anfangzustand zu versetzen:
                     
-                    //ConnectAppToDeviceButton.Content = "not connected";
+                    ConnectAppToDeviceButton.Content = "not connected";
                     //connectionManager.Initialize();
                     //stateManager.Initialize();
                     //lstBTPaired.Items.Clear();

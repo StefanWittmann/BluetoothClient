@@ -1,12 +1,13 @@
-﻿using System;
+﻿using BluetoothClientWP8.Resources;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using System;
 using System.Diagnostics;
 using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using BluetoothClientWP8.Resources;
+
 
 namespace BluetoothClientWP8
 {
@@ -90,14 +91,19 @@ namespace BluetoothClientWP8
                 Debugger.Break();
             }
         }
-
+        
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
             if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger  		HResult	0x8007274c	int
-
+                //if ((uint)e.ExceptionObject.HResult == 0x8007274c)
+                //{
+                //MessageBox.Show(ex.Message);
+                //MessageBox.Show("Not in Range2");
+                
+                //}
                 Debugger.Break();
             }
         }
@@ -214,6 +220,11 @@ namespace BluetoothClientWP8
 
                 if (Debugger.IsAttached)
                 {
+
+                    
+                    
+                    
+                    
                     Debugger.Break();
                 }
 
