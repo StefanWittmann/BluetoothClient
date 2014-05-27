@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BluetoothClientWP8;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Windows.Networking;
@@ -16,10 +14,14 @@ namespace BluetoothConnectionManager
     /// Class to control the bluetooth connection to the Arduino.
     /// </summary>
     /// 
-   
+
 
     public class ConnectionManager
     {
+        public Button ConnectAppToDeviceButton { get; set; }
+        public ListBox lstBTPaired { get; set; }
+        
+        
         /// <summary>
         /// Socket used to communicate with Arduino.
         /// </summary>
@@ -80,7 +82,7 @@ namespace BluetoothConnectionManager
                 dataReadWorker.CancelAsync();
             }
         }
-        public Button ConnectAppToDeviceButton { get; set; }
+        
         /// <summary>
         /// Connect to the given host device.
         /// </summary>
@@ -95,12 +97,15 @@ namespace BluetoothConnectionManager
                     dataReader = new DataReader(socket.InputStream);
                     dataReadWorker.RunWorkerAsync();
                     dataWriter = new DataWriter(socket.OutputStream);
+                    lstBTPaired.IsEnabled = false;
+                    
                 }
                 catch 
                 {
-                  //System.Windows.MessageBox.Show("Not in Range1");
-                    ConnectAppToDeviceButton.Content = "TEST";
-                  
+                  System.Windows.MessageBox.Show("Not in Range1");
+                  ConnectAppToDeviceButton.Content = "not connected";             //Diese Zeile  wird nicht ausgeführt!
+                  ConnectAppToDeviceButton.IsEnabled = false;
+                  lstBTPaired.SelectedIndex = -1;
                     //throw exp;
                 }
                     
@@ -117,7 +122,7 @@ namespace BluetoothConnectionManager
 
                     //dies hier möchte ich ausführen wenn der Verbindungsaufbau gescheitert ist um das Programm in den Anfangzustand zu versetzen:
                     
-                    ConnectAppToDeviceButton.Content = "not connected";
+                    //ConnectAppToDeviceButton.Content = "not connected";
                     //connectionManager.Initialize();
                     //stateManager.Initialize();
                     //lstBTPaired.Items.Clear();

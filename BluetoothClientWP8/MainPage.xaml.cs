@@ -31,15 +31,18 @@ using Windows.Phone.Speech.Synthesis;
 namespace BluetoothClientWP8
 {
 
-    
+
     public partial class MainPage : PhoneApplicationPage
     {
         private ConnectionManager connectionManager;
 
         private StateManager stateManager;
 
-       
-
+        //public static Button ConnectAppToDeviceButton { get; set; }
+        //public Button _ConnectAppToDeviceButton
+        //{
+         //   get { return ConnectAppToDeviceButton; }
+        //}
 
         
 
@@ -51,6 +54,10 @@ namespace BluetoothClientWP8
             connectionManager.MessageReceived += connectionManager_MessageReceived;
             stateManager = new StateManager();
             Loaded += MainPage_Loaded;
+
+            
+            this.connectionManager.ConnectAppToDeviceButton = this.ConnectAppToDeviceButton;
+            this.connectionManager.lstBTPaired = this.lstBTPaired;
         }
 
 
@@ -219,6 +226,7 @@ namespace BluetoothClientWP8
                 ConnectAppToDeviceButton.IsEnabled = false;
                 ConnectAppToDeviceButton.Content = "not connected";
                 lstBTPaired.SelectedIndex = -1;
+                lstBTPaired.IsEnabled = true;
                 connectionManager.Initialize();
                 stateManager.Initialize();
             
@@ -340,6 +348,7 @@ namespace BluetoothClientWP8
                         ConnectAppToDeviceButton.Content = "disconnect";
                         //DeviceName.IsReadOnly = true;
                         ConnectAppToDeviceButton.IsEnabled = true;
+                        //lstBTPaired.IsEnabled = false;
                     //}
 
 
