@@ -286,7 +286,7 @@ namespace BluetoothClientWP8
             await connectionManager.SendCommand(command);
         }
 
-        private async void lstBTPaired_Tap_1(object sender, GestureEventArgs e)
+        public async void lstBTPaired_Tap_1(object sender, GestureEventArgs e)
             
         {
             if (lstBTPaired.SelectedItem == null) // To prevent errors, make sure something is Selected
@@ -364,6 +364,11 @@ namespace BluetoothClientWP8
 
                     //btnSendCommand.IsEnabled = true; // Allow commands to be sent via Command Button (Enabled)
                 }
+        }
+
+        public void NavigateButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/SecondPage.xaml?msg=" + lstBTPaired.SelectedItem, UriKind.Relative));
         }
     }
 }
