@@ -38,14 +38,7 @@ namespace BluetoothClientWP8
 
         private StateManager stateManager;
 
-        //public static Button ConnectAppToDeviceButton { get; set; }
-        //public Button _ConnectAppToDeviceButton
-        //{
-         //   get { return ConnectAppToDeviceButton; }
-        //}
-
-        
-
+         
         // Constructor
         public MainPage()
         {
@@ -58,6 +51,9 @@ namespace BluetoothClientWP8
             
             this.connectionManager.ConnectAppToDeviceButton = this.ConnectAppToDeviceButton;
             this.connectionManager.lstBTPaired = this.lstBTPaired;
+
+            
+            
         }
 
 
@@ -215,7 +211,7 @@ namespace BluetoothClientWP8
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            connectionManager.Terminate();
+            //connectionManager.Terminate();
         }
 
         private void ConnectAppToDeviceButton_Click_1(object sender, RoutedEventArgs e)
