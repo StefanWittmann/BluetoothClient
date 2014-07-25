@@ -14,8 +14,8 @@ namespace BluetoothClientWP8
 {
     public partial class SecondPage : PhoneApplicationPage
     {
-
-        private ConnectionManager connectionManager;
+        //MainPage mainPage = new MainPage();
+        
         
         public SecondPage()
         {
@@ -26,7 +26,7 @@ namespace BluetoothClientWP8
         }
 
 
-        //public ConnectionManager connectionManger { get; set; }
+        //public ConnectionManager connectionManager { get; set; }
         //public ListBox lstBTPaired { get; set; }
         
 
@@ -50,8 +50,8 @@ namespace BluetoothClientWP8
 
             //this.ColorRect.Fill = new SolidColorBrush(color);
             //this.ColorText.Text = color.ToString().Substring(3);
-           await connectionManager.SendCommand(color.ToString().Substring(3));
-            
+           //await MainPage.instance.connectionManager.SendCommand(color.ToString().Substring(3));
+            await MainPage.instance.SendCommand(color.ToString().Substring(3));
         }
 
     }

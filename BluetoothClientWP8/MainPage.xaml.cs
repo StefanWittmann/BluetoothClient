@@ -34,12 +34,13 @@ namespace BluetoothClientWP8
 
     public partial class MainPage : PhoneApplicationPage
     {
-        private ConnectionManager connectionManager;
+        public ConnectionManager connectionManager;
 
         private StateManager stateManager;
 
-         
-        // Constructor
+        public static ConnectionManager instance { get; set; }
+            
+            // Constructor
         public MainPage()
         {
             InitializeComponent();
@@ -48,17 +49,14 @@ namespace BluetoothClientWP8
             stateManager = new StateManager();
             Loaded += MainPage_Loaded;
 
-            
+
             this.connectionManager.ConnectAppToDeviceButton = this.ConnectAppToDeviceButton;
             this.connectionManager.lstBTPaired = this.lstBTPaired;
 
-            
-            
+            //this.connectionManager.SendCommand = this.
+            instance = this.connectionManager;
+
         }
-
-
-
-        
 
 
 
@@ -112,12 +110,22 @@ namespace BluetoothClientWP8
                     // Found paired devices.
                     for (int i = 0; i < peers.Count; i++)
                     {
-                        lstBTPaired.Items.Add(peers[i].DisplayName);
+                        
+
+                            lstBTPaired.Items.Add(peers[i].DisplayName);
+                        
                     }
-                    if (peers.Count <= 2)
-                    {
+                    //if (peers.Count <= 3)
+                    //{
                         txtBTStatus.Text = "Found " + peers.Count + " Devices";
-                    }
+                    //}
+
+
+                        
+
+
+
+
                 }
             }
             catch (Exception ex)

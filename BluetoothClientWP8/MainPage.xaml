@@ -15,9 +15,9 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Button Name="ConnectAppToDeviceButton" Click="ConnectAppToDeviceButton_Click_1" Height="100" Content="not connected" Margin="136,228,144,440"/>
+        <Button Name="ConnectAppToDeviceButton" Click="ConnectAppToDeviceButton_Click_1" Height="100" Content="not connected" Margin="136,279,144,389"/>
         <TextBlock x:Name="txtBTStatus" HorizontalAlignment="Center" Margin="0,59,0,0" TextWrapping="Wrap" TextTrimming="WordEllipsis" Text="Tap a Paired Device Below" VerticalAlignment="Top" TextAlignment="Center"/>
-        <ListBox x:Name="lstBTPaired" ItemsSource="{Binding}" Visibility="Visible" Margin="10,91,10,563"  Tap="lstBTPaired_Tap_1" />
+        <ListBox x:Name="lstBTPaired" ItemsSource="{Binding}" Visibility="Visible" Margin="10,91,10,534"  Tap="lstBTPaired_Tap_1" />
         <Button Name="RedButton" Click="RedButton_Click_1" Width="200" Height="100" Content="Red" Margin="136,399,144,269"/>
         <Button Name="GreenButton" Click="GreenButton_Click_1" Width="200" Height="100" Content="Green" Margin="136,499,144,169"/>
         <Button Name="NavigateButton" Click="NavigateButton_Click" Width="200" Height="100" Content="Nextpage" Margin="136,599,144,69"/>
