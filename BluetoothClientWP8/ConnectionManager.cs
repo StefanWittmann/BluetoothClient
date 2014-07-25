@@ -102,7 +102,7 @@ namespace BluetoothConnectionManager
                 }
                 catch 
                 {
-                  System.Windows.MessageBox.Show("Not in Range1");
+                  System.Windows.MessageBox.Show("Not in Range");
                   ConnectAppToDeviceButton.Content = "not connected";             //Diese Zeile  wird nicht ausgeführt!
                   ConnectAppToDeviceButton.IsEnabled = false;
                   lstBTPaired.SelectedIndex = -1;

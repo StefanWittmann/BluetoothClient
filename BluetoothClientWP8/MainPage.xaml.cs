@@ -66,9 +66,13 @@ namespace BluetoothClientWP8
             //PeerFinder.Start();
             //PeerFinder.AlternateIdentities["Bluetooth:Paired"] = ""; // Find/Get All Paired BT Devices
             //var peers = await PeerFinder.FindAllPeersAsync(); // Make peers the container for All BT Devices
-            txtBTStatus.Text = "Finding Paired Devices..."; // Tell UI what is going on in case it's Slow
-            ConnectAppToDeviceButton.IsEnabled = false;
-            ConnectAppToDeviceButton.Content = "not connected";
+
+            //rausgenommen am 25.07.
+            //txtBTStatus.Text = "Finding Paired Devices..."; // Tell UI what is going on in case it's Slow
+            //ConnectAppToDeviceButton.IsEnabled = false;
+            //ConnectAppToDeviceButton.Content = "not connected2";
+
+
             // Only want 1 Device to Show? Uncomment Below
             // lstBTPaired.Items.Add(peers[0].DisplayName); // 1 Paired Device to Show 
 
@@ -212,7 +216,7 @@ namespace BluetoothClientWP8
             connectionManager.Initialize();
             stateManager.Initialize();
             lstBTPaired.Items.Clear();
-            RefreshPairedDevicesList();
+            //RefreshPairedDevicesList();
 
 
         }
@@ -227,7 +231,7 @@ namespace BluetoothClientWP8
 
             
                 connectionManager.Terminate();
-                ConnectAppToDeviceButton.IsEnabled = false;
+                //ConnectAppToDeviceButton.IsEnabled = false;
                 ConnectAppToDeviceButton.Content = "not connected";
                 lstBTPaired.SelectedIndex = -1;
                 lstBTPaired.IsEnabled = true;
